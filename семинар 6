@@ -1,1 +1,65 @@
+2.1
+print(list(input('Введите строку: ')))
+2.2
+import re
+st = input()
+new_st = re.findall(r'\w+\D',st)
+print(new_st)
 
+3
+import re
+st = input()
+new_st = re.findall(r'\d+',st)
+print(new_st)
+
+4
+import re
+str=input()
+array=[]
+ans=[]
+words=re.findall(r'\b\w+\b',str)
+for i in range(len(words)):
+    if words[i].isdigit():
+        array.append(int(words[i]))
+    else:
+        array.append(words[i])
+if array[-2] == 'repeat':
+    ans=(array[:-2])*array[-1]
+    ans.append(array[-2])
+    ans.append(array[-1])
+    print(ans)
+else:
+    print(array)
+
+5
+s1 = input()
+s2 = input()
+if len(s1) < len(s2):
+    print(f'Длины строк: {len(s1)} и {len(s2)}')
+else:
+    print(f'{s1} {s2} Строка первая идет ПОСЛЕ строки вторая')
+
+6
+s = input('')
+l = list(s)
+for i in range(1, len(l)-1):
+    if l[i] == 's' or l[i] == 'S':
+        l[i] = l[i-1]*2 + l[i+1]
+print(l)
+
+7
+s1 = ['один', 'два', 'три']
+s2= ['альфа', 'бетта', 'гамма']
+len_max = max(len(s1),len(s2))
+ans= []
+for i in range(len_max):
+    ans.append(s1[i])
+    ans.append(s2[i])
+print(ans)
+
+8
+s1 = ['один', 'два', 'три']
+s2= ['альфа', 'бетта', 'гамма']
+print(list(zip(s1,s2)))
+
+9
