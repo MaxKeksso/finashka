@@ -49,7 +49,6 @@ print(multi(*a2))
 print(multi(*a3))
 print(multi(*a4[0:3]),multi(*a4[1:]))
  7 changes: 7 additions & 0 deletions7  
-9 manual/4.py
 
 def multi_all(*nums):
     ans = 1
@@ -59,7 +58,6 @@ def multi_all(*nums):
 
 print(multi_all(1, 2, 3, 4))
  42 changes: 42 additions & 0 deletions42  
-9 manual/8.py
 
 numbers = {}
 
@@ -104,7 +102,6 @@ num = int(input())
 
 print(to_text(num))
  52 changes: 52 additions & 0 deletions52  
-9 manual/9.py
 
 numbers = {}
 numbers['ноль'],numbers['0'] = 0, 'ноль'
