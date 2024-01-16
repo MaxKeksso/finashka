@@ -1,0 +1,75 @@
+1.1
+str=input()
+ans=[]
+ans_array=[]
+for i in range(len(str)):
+    if str[i].isalpha():
+        count=str.count(str[i])
+    ans.append(str[i]*count)
+    count=0
+new_list=set(ans)
+for el in new_list:
+    if el =='':
+        pass
+    else:
+        ans_array.append(el)
+print(sorted(ans_array))
+
+1.2
+import re
+list=input()
+result=re.split(r'[-=]',list)
+print(result)
+
+2.1
+str=input()
+ans_str=''
+ans=''
+for i in range(len(str)):
+    if str[i]!=' ':
+        ans_str+=str[i]
+    else:
+        break
+for i in range(len(ans_str)):
+    if ans_str[i].isalpha():
+        ans+=ans_str[i]
+print(ans)
+2.2
+import re
+result=re.findall(r'\b\w+\b',str)
+print(result[0])
+
+3.1
+str=input()
+ans_str=''
+ans=''
+for i in range(len(str),0,-1):
+    if str[i-1]!=' ':
+        ans_str+=str[i-1]
+    else:
+        break
+for i in range(len(ans_str)):
+    if ans_str[i].isalpha():
+        ans+=ans_str[i]
+print(ans[::-1])
+
+4.1
+str=input()
+ans=[]
+glas='aeiouyAEIOUYауоиэыАУОИЭЫ'
+words=str.split(' ')
+for i in range(len(words)):
+    if words[i][0] in glas:
+        ans.append(words[i])
+print(ans)
+
+4.2
+import re
+result=re.findall(r'\b[aeiouyAEIOUY]\w+',str)
+print(result)
+
+6.
+import re
+str=input()
+result=re.search(r'[^A-Z]',str)
+print(result)
