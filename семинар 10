@@ -1,1 +1,36 @@
+2.
+def cathetus_2(a,b):
+    try:
+        assert str(a).isdigit() == True and str(b).isdigit() == True, 'invalid argument'
+        assert b > a, 'cathetus must be less than hypotenuse'
+        c = (b**2 - a**2)**0.5
+        print(c)
+    except AssertionError as err:
+        print(err)
+cathetus_2(3,5)
+ 13 changes: 13 additions & 0 deletions13  
+3.
+def cathetus_2_():
+    try:
+        a = int(input('enter cathetus_1: '))
+        b = int(input('enter hypothesis: '))
+        assert b > a, 'cathetus must be less than hypotenuse'
+        c = (b**2 - a**2)**0.5
+        print(c)
+    except AssertionError as err:
+        print(err)
+    except ValueError:
+        print('invalid argument')
 
+cathetus_2_()
+ 9 changes: 9 additions & 0 deletions9  
+4.
+f1 = open('file_6.1.4', mode = 'w')
+f1.write('String1\nString2')
+f1.close()
+s = input('enter file name: ')
+try:
+    with open(s, 'r') as f:
+        print(f.readline())
+except FileNotFoundError:
+    print('no such file exists')
