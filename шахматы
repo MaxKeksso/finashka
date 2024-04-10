@@ -1,4 +1,4 @@
-> Макс Загороднев:
+
 play_board = [    ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
     ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],    ['_', '_', '_', '_', '_', '_', '_', '_'],
     ['_', '_', '_', '_', '_', '_', '_', '_'],    ['_', '_', '_', '_', '_', '_', '_', '_'],
@@ -55,7 +55,7 @@ def correct_move(play_board, start, end):
         #             return True        #     elif piece == 'N' or piece == 'n':
         #
 
-> Макс Загороднев:
+
 if abs(start[0] - end[0]) == 2 and abs(start[1] - end[1]) == 1:        #             return True
         #         elif abs(start[0] - end[0]) == 1 and abs(start[1] - end[1]) == 2:        #             return True
         #     elif piece == 'B' or piece == 'b':        #         if abs(start[0] - end[0]) == abs(start[1] - end[1]):
@@ -113,7 +113,7 @@ if abs(start[0] - end[0]) == 2 and abs(start[1] - end[1]) == 1:        #        
         else:            print("Ход черных:")
         start = input("Введите координату фигуры (сначала буква, потом цифра): ")        end =
 
-> Макс Загороднев:
+
 input("Введите координату места, куда хотите перставить фигуру (сначала буква, потом цифра): ")
         start_row = int(start[1]) - 1        start_col = ord(start[0]) - ord('a')
         end_row = int(end[1]) - 1        end_col = ord(end[0]) - ord('a')
