@@ -1,0 +1,79 @@
+import tkinter as tk
+import random
+import json
+
+# Настройки окна
+WIDTH, HEIGHT = 800, 600  # Размеры окна
+DROP_COUNT = 100  # Максимальное количество капель
+
+
+# Загрузка конфигурации капель из файла
+def load_config(filename):
+    """Загружает параметры капель из конфигурационного файла."""
+    with open(filename, 'r') as f:
+        return json.load(f)
+
+
+# Класс для капли дождя
+class Drop:
+    def __init__(self, canvas, density):
+        """Инициализация капли с заданной плотностью."""
+        self.canvas = canvas  # Ссылка на холст для рисования
+        self.x = random.randint(0, WIDTH)  # Случайная позиция по x
+        self.y = random.randint(-HEIGHT, HEIGHT)  # Начальная позиция по y (вне экрана)
+        self.density = density  # Плотность капли
+        self.speed = 2 + random.uniform(0, 3) * (1 - density)  # Скорость падения зависит от плотности
+
+    def fall(self):
+        """Обновляет положение капли при падении."""
+        self.y += self.speed  # Увеличиваем y-координату на скорость
+
+    def draw(self):
+        """Отображает каплю на холсте."""
+        color = (0, int(255 * (1 - self.density)), 255)  # Цвет зависит от плотности (синий)
+        radius = 5 * (1 - self.density) + 1  # Размер капли зависит от плотности
+        x1 = self.x - radius
+        y1 = self.y - radius
+        x2 = self.x + radius
+        y2 = self.y + radius
+
+        # Рисуем круг для капли
+        self.canvas.create_oval(x1, y1, x2, y2, fill=f'#{color[0]:02x}{color[1]:02x}{color[2]:02x}', outline='')
+
+
+# Основной класс приложения
+class RainSimulation:
+    def __init__(self, root):
+        """Инициализация симуляции дождя."""
+        self.root = root
+        self.root.title("Rain Simulation")  # Заголовок окна
+
+        # Создание холста для рисования
+        self.canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT)
+        self.canvas.pack()
+
+        # Генерация капель с случайными параметрами
+        self.drops = [Drop(self.canvas, random.uniform(0.1, 1)) for _ in range(DROP_COUNT)]
+
+    def update(self):
+        """Обновляет положение и отображение капель."""
+        self.canvas.delete("all")  # Очищаем холст перед перерисовкой
+
+        for drop in self.drops:
+            drop.fall()  # Обновляем положение капли
+
+            if drop.y > HEIGHT:  # Если капля вышла за экран вниз
+                drop.y = random.randint(-HEIGHT, -10)  # Переместить её обратно в верхнюю часть экрана
+                drop.x = random.randint(0, WIDTH)  # Случайная позиция по x
+
+            drop.draw()  # Отображаем каплю
+
+        self.root.after(30, self.update)  # Запланировать следующий вызов через 30 мс
+
+
+# Создание основного окна и запуск симуляции
+if __name__ == "__main__":
+    root = tk.Tk()  # Создаем главное окно приложения
+    rain_simulation = RainSimulation(root)  # Создаем объект симуляции дождя
+    rain_simulation.update()  # Запускаем обновление симуляции
+    root.mainloop()  # Запускаем главный цикл приложения
